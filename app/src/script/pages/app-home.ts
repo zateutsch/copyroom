@@ -20,18 +20,11 @@ export class AppHome extends LitElement {
         flex-direction: column;
       }
 
-      #welcomeBar fluent-card {
-        margin-bottom: 12px;
-      }
-
-
-
       h1 {
         font-family: "bubble";
         font-size: 100px;
         color: white;
       }
-
 
       @media (horizontal-viewport-segments: 2) {
         #welcomeBar {
@@ -53,6 +46,15 @@ export class AppHome extends LitElement {
     // this method is a lifecycle even in lit
     // for more info check out the lit docs https://lit.dev/docs/components/lifecycle/
     console.log('This is your home page');
+
+    const ws = new WebSocket('ws://localhost:8999');
+
+    const btn = this.renderRoot.querySelector('sl-button');
+    console.log(btn);
+    btn?.addEventListener('click', () => {
+      console.log("yeah");
+      ws.send('hello');
+    });
   }
 
   share() {
@@ -72,6 +74,7 @@ export class AppHome extends LitElement {
           <h1>
             CopyRoom
           </h1>
+          <sl-button> CLick me</sl-button>
         </div>
       </div>
     `;
