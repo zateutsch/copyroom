@@ -47,7 +47,7 @@ export class AppHome extends LitElement {
     // for more info check out the lit docs https://lit.dev/docs/components/lifecycle/
     console.log('This is your home page');
 
-    const ws = new WebSocket('ws://localhost:8999');
+    const ws = new WebSocket('ws://localhost:8999/open-room');
 
     const btn = this.renderRoot.querySelector('sl-button');
     console.log(btn);
