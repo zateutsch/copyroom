@@ -7,19 +7,16 @@
   --font-family: sans-serif;
 }
 
+body {
+  background-image: url('/assets/copyroom_background.png');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 html, body {
   font-family: var(--font-family);
   padding: 0;
-  margin: 0;
-  background: #181818;
-}
-
-@media (prefers-color-scheme: dark) {
-  html,
-  body {
-    background-image: url('/assets/copyroom_background.png');
-  }
-
 }
 
 @font-face {
@@ -27,11 +24,8 @@ html, body {
   src: url("/assets/04B_30__.ttf");
 }
 
-@media (prefers-color-scheme: light) {
-  html,
-  body {
-    background-image: url('/assets/copyroom_background.png');
-    color: black;
-  }
-
+@font-face {
+  font-family: "upheaval";
+  src: url("/assets/upheavtt.ttf");
 }
+

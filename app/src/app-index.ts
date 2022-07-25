@@ -4,7 +4,10 @@ import { Router } from '@vaadin/router';
 import { registerSW } from 'virtual:pwa-register';
 
 import './script/pages/app-home';
+import './script/pages/app-room';
 import './styles/global.css';
+import './script/components/header';
+import './script/components/copy-area';
 
 @customElement('app-index')
 export class AppIndex extends LitElement {
@@ -62,12 +65,14 @@ export class AppIndex extends LitElement {
     router.setRoutes([
       // temporarily cast to any because of a Type bug with the router
       {
-        path: (import.meta as any).env.BASE_URL,
-        animate: true,
-        children: [
-          { path: '', component: 'app-home' },
-        ],
+        path: '/',
+        component: 'app-home'
+
       } as any,
+      {
+        path: '/room/:code',
+        component: 'app-room'
+      }
     ]);
     registerSW({ immediate: true });
   }

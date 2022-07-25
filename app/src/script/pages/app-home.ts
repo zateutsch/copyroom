@@ -1,5 +1,5 @@
 import { LitElement, css, html } from 'lit';
-import { property, customElement } from 'lit/decorators.js';
+import {  customElement } from 'lit/decorators.js';
 
 // For more info on the @pwabuilder/pwainstall component click here https://github.com/pwa-builder/pwa-install
 import '@pwabuilder/pwainstall';
@@ -9,21 +9,41 @@ export class AppHome extends LitElement {
 
   // For more information on using properties and state in lit
   // check out this link https://lit.dev/docs/components/properties/
-  @property() message = 'Welcome!';
 
   static get styles() {
     return css`
-      #welcomeBar {
+      #mainContainer {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
       }
 
-      h1 {
-        font-family: "bubble";
-        font-size: 100px;
+      button {
+        font-family: upheaval;
+        padding: 20px;
+        background-color: #ffb6c1;
+        margin: 5px;
+        border-radius: 5px;
+        font-size: min(3.5vw, 25px);
+        border-color: #ffb6c1;
         color: white;
+      }
+
+      #topButton {
+        margin-top: 30px;
+      }
+
+      h2 {
+        font-family: "bubble";
+        color: white;
+        font-size: min(3.5vw, 25px);
+        text-align: center;
       }
 
       @media (horizontal-viewport-segments: 2) {
@@ -70,11 +90,13 @@ export class AppHome extends LitElement {
   render() {
     return html`
       <div>
-        <div id="welcomeBar">
-          <h1>
-            CopyRoom
-          </h1>
-          <sl-button> CLick me</sl-button>
+        <div id="mainContainer">
+          <app-header></app-header>
+          <h2>
+            A login-free and cross-platform shared clipboard.
+          </h2>
+            <a href="/room/HZFC"> <button id="topButton" > Create A New CopyRoom </button> </a>
+            <button> Join An Existing CopyRoom </button>
         </div>
       </div>
     `;
