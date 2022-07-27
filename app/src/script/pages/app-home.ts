@@ -62,19 +62,25 @@ export class AppHome extends LitElement {
     super();
   }
 
-  async firstUpdated() {
-    // this method is a lifecycle even in lit
-    // for more info check out the lit docs https://lit.dev/docs/components/lifecycle/
-    console.log('This is your home page');
 
+  createNewButtonClick() {
     const ws = new WebSocket('ws://localhost:8999/open-room');
 
-    const btn = this.renderRoot.querySelector('sl-button');
-    console.log(btn);
-    btn?.addEventListener('click', () => {
-      console.log("yeah");
-      ws.send('hello');
+    ws.addEventListener("message", (event) => {
+      var messageObject = JSON.parse(event.data.toString());
+      if(messageObject.type === "roomCode") {
+        ws.close();
+        window.location.href = window.location.href + "room/" + messageObject.message;
+      }
     });
+
+
+  }
+
+  async firstUpdated() {
+
+
+
   }
 
   share() {
@@ -87,6 +93,8 @@ export class AppHome extends LitElement {
     }
   }
 
+
+
   render() {
     return html`
       <div>
@@ -95,7 +103,7 @@ export class AppHome extends LitElement {
           <h2>
             A login-free and cross-platform shared clipboard.
           </h2>
-            <a href="/room/HZFC"> <button id="topButton" > Create A New CopyRoom </button> </a>
+            <button id="topButton" @click=${this.createNewButtonClick}> Create A New CopyRoom </button>
             <button> Join An Existing CopyRoom </button>
         </div>
       </div>

@@ -7,7 +7,6 @@ import './script/pages/app-home';
 import './script/pages/app-room';
 import './styles/global.css';
 import './script/components/header';
-import './script/components/copy-area';
 
 @customElement('app-index')
 export class AppIndex extends LitElement {
