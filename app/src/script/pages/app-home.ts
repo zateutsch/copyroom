@@ -24,6 +24,17 @@ export class AppHome extends LitElement {
         right: 0;
       }
 
+      #dialogContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      sl-dialog::part(panel) {
+        background-image: linear-gradient(to top, #FFD1D8, 40%, #FF98A8);
+      }
+
       button {
         font-family: upheaval;
         padding: 20px;
@@ -33,6 +44,25 @@ export class AppHome extends LitElement {
         font-size: min(3.5vw, 25px);
         border-color: #ffb6c1;
         color: white;
+      }
+
+      sl-dialog button {
+        background-color: #FF98A8;
+        margin-top: 10px;
+        font-size: min(3.5vw, 25px);
+        margin: none;
+        padding: none;
+      }
+
+      sl-input::part(input) {
+        font-family: upheaval;
+        font-size: min(3.5vw, 25px);
+        text-align: center;
+        padding: 20px;
+      }
+
+      sl-input {
+        margin: 10px;
       }
 
       #topButton {
@@ -73,10 +103,17 @@ export class AppHome extends LitElement {
         window.location.href = window.location.href + "room/" + messageObject.message;
       }
     });
-
-
   }
 
+  bottomButtonClick() {
+    const dialog = this.renderRoot.querySelector('sl-dialog') as any;
+    dialog.show();
+  }
+
+  dialogButtonClick() {
+    const dialog = this.renderRoot.querySelector('sl-dialog') as any;
+    dialog.hide();
+  }
   async firstUpdated() {
 
 
@@ -104,9 +141,16 @@ export class AppHome extends LitElement {
             A login-free and cross-platform shared clipboard.
           </h2>
             <button id="topButton" @click=${this.createNewButtonClick}> Create A New CopyRoom </button>
-            <button> Join An Existing CopyRoom </button>
+            <button @click=${this.bottomButtonClick}> Join An Existing CopyRoom </button>
         </div>
       </div>
+
+      <sl-dialog>
+        <div id="dialogContainer">
+          <sl-input filled="true" size="large" pill placeholder="Enter a room code"></sl-input>
+          <button id="dialogButton" @click=${this.dialogButtonClick}> Join </button>
+        </div>
+      </sl-dialog>
     `;
   }
 }

@@ -65,7 +65,6 @@ function createNewSocketServer(request: http.IncomingMessage, socket: any, head:
     });
 
     setTimeout(() => {
-        broadcast(wss, {type: "close"});
         server.close()
     }, 900000);
 
