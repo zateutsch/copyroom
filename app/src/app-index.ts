@@ -5,6 +5,7 @@ import { registerSW } from 'virtual:pwa-register';
 
 import './script/pages/app-home';
 import './script/pages/app-room';
+import './script/pages/app-error';
 import './styles/global.css';
 import './script/components/header';
 
@@ -71,6 +72,14 @@ export class AppIndex extends LitElement {
       {
         path: '/room/:code',
         component: 'app-room'
+      },
+      {
+        path: '/room',
+        redirect: '/error'
+      },
+      {
+        path: '/error',
+        component: 'app-error'
       }
     ]);
     registerSW({ immediate: true });

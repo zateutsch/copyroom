@@ -4,7 +4,7 @@ import {  customElement } from 'lit/decorators.js';
 // For more info on the @pwabuilder/pwainstall component click here https://github.com/pwa-builder/pwa-install
 import '@pwabuilder/pwainstall';
 
-@customElement('app-home')
+@customElement('app-error')
 export class AppHome extends LitElement {
 
   // For more information on using properties and state in lit
@@ -24,16 +24,6 @@ export class AppHome extends LitElement {
         right: 0;
       }
 
-      #dialogContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      sl-dialog::part(panel) {
-        background-image: linear-gradient(to top, #FFD1D8, 40%, #FF98A8);
-      }
 
       button {
         font-family: upheaval;
@@ -46,27 +36,11 @@ export class AppHome extends LitElement {
         color: white;
       }
 
-      sl-dialog button {
-        background-color: #FF98A8;
-        margin-top: 10px;
-        font-size: min(3.5vw, 25px);
-        margin: none;
-        padding: none;
-      }
-
-      sl-input::part(input) {
-        font-family: upheaval;
-        font-size: min(3.5vw, 25px);
-        text-align: center;
-        padding: 20px;
-      }
-
-      sl-input {
-        margin: 10px;
-      }
-
-      #topButton {
-        margin-top: 30px;
+      h1 {
+        font-family: "bubble";
+        font-size: min(10vw, 100px);
+        color: white;
+        margin-bottom: 0px;
       }
 
       h2 {
@@ -74,6 +48,10 @@ export class AppHome extends LitElement {
         color: white;
         font-size: min(3.5vw, 25px);
         text-align: center;
+      }
+
+      a {
+        text-decoration: none;
       }
 
       @media (horizontal-viewport-segments: 2) {
@@ -105,19 +83,7 @@ export class AppHome extends LitElement {
     });
   }
 
-  bottomButtonClick() {
-    const dialog = this.renderRoot.querySelector('sl-dialog') as any;
-    dialog.show();
-  }
-
-  dialogButtonClick() {
-    const dialog = this.renderRoot.querySelector('sl-dialog') as any;
-    const roomCode = (this.renderRoot.querySelector('sl-input') as any).value.toUpperCase();
-    window.location.href = window.location.href + "room/" + roomCode;
-  }
   async firstUpdated() {
-
-
 
   }
 
@@ -137,21 +103,19 @@ export class AppHome extends LitElement {
     return html`
       <div>
         <div id="mainContainer">
-          <app-header></app-header>
+          <h1>
+            404!
+          </h1>
           <h2>
-            A login-free and cross-platform shared clipboard.
+            We couldn't find that CopyRoom.
           </h2>
-            <button id="topButton" @click=${this.createNewButtonClick}> Create A New CopyRoom </button>
-            <button @click=${this.bottomButtonClick}> Join An Existing CopyRoom </button>
+          <a href="/">
+            <button>
+                Return
+            </button>
+          </a>
         </div>
       </div>
-
-      <sl-dialog>
-        <div id="dialogContainer">
-          <sl-input filled="true" size="large" pill placeholder="Enter a room code"></sl-input>
-          <button id="dialogButton" @click=${this.dialogButtonClick}> Join </button>
-        </div>
-      </sl-dialog>
     `;
   }
 }
